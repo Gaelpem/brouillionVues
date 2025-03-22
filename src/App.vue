@@ -1,73 +1,34 @@
 <template>
-  <form action="" @submit.prevent="addTodo">
-
-
-    <fieldset role="group">
-
-      <input v-model="newTodo"
-      type="text" placeholder="Tache à effectuer">
-
-      <button :disabled="newTodo.length == 0" >Ajouter</button>
-
-    </fieldset>
+  <form @submit.prevent="submitFormulaire">
+  <label for="nom">Nom:</label>
+  <input type="text" id="nom" v-model="nom" placeholder="Nom">
+  <label for="age">Age:</label>
+  <input type="text" id="age" v-model="age" placeholder="Age">
   </form>
-
-
-  <div v-if="todos.length == 0">Vous avez pas de tâches à faire </div>
-
-  <div v-else>
-
-    <ul>
-      <li v-for="todo in todos" :key="todo.date" :class="{completed: todo.completed}">
-      <label>
-        <input type="checkbox" :checked="todo.completed" v-model="todo.completed">
-        {{ todo.title }}
-      </label>
-      </li>
-    </ul>
-   <Checkbox label="Bonjour"/>
-  </div>
-
-
-  
+  <p>{{ description }}</p>
 </template>
 
-
-<script setup>
-import { ref } from 'vue';
-import Checkbox from './Checkbox.vue'
-
-const newTodo = ref('')
-
-const todos = ref([{
-  title: 'Tâche de test', 
-  completed: true, 
-  date:1
-},{
-  title: 'Tâche à faire ', 
-  completed: false, 
-  date:2
-}])
-
-const addTodo = () =>{
-
-  todos.value.push({
-    title : newTodo.value,
-    completed: false,
-    date: Date.now()
-
-  })
-
-const sortedTodos = () =>{
-  z
-}
-}
+<script>
+    export default{
+      data(){
+        return{
+          nom:'',
+          age:''
+        }
+      }, 
+      computed:{
+          description(){
+             return `Nom : ${this.nom.toUpperCase()} , Age: ${this.age}`
+          }
+      }, 
+      methods:{
+        submitFormulaire(){
+          alert(this.description)
+        }
+      }
+    }
 </script>
+<style scoped>
 
 
-<style>
-.completed{
-  opacity: 0.5;
-  text-decoration: line-through;
-}
 </style>
