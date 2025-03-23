@@ -1,34 +1,25 @@
 <template>
-  <form @submit.prevent="submitFormulaire">
-  <label for="nom">Nom:</label>
-  <input type="text" id="nom" v-model="nom" placeholder="Nom">
-  <label for="age">Age:</label>
-  <input type="text" id="age" v-model="age" placeholder="Age">
-  </form>
-  <p>{{ description }}</p>
+   <div> 
+  <input type="text" v-model="message" placeholder="Tape quelque chose">
+  <p> Texte inverse : {{ reverseMessage }}</p>
+</div>
 </template>
 
 <script>
-    export default{
-      data(){
-        return{
-          nom:'',
-          age:''
-        }
-      }, 
-      computed:{
-          description(){
-             return `Nom : ${this.nom.toUpperCase()} , Age: ${this.age}`
-          }
-      }, 
-      methods:{
-        submitFormulaire(){
-          alert(this.description)
-        }
-      }
+export default{
+   data(){
+    return{
+      message : ''
     }
+   }, 
+   computed:{
+    reverseMessage(){
+      return this.message.split('').reverse().join('')
+    }
+   }
+}
 </script>
-<style scoped>
 
 
+<style scoped> 
 </style>
