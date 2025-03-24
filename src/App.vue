@@ -1,25 +1,28 @@
 <template>
-   <div> 
-  <input type="text" v-model="message" placeholder="Tape quelque chose">
-  <p> Texte inverse : {{ reverseMessage }}</p>
-</div>
+  <input v-model="recherche" placeholder="Recherche">
+  <ul>
+    <li v-for="nom in  firlterNom" :key="nom">{{ nom }}</li>
+  </ul>
 </template>
+
 
 <script>
 export default{
-   data(){
-    return{
-      message : ''
+    data(){
+      return{
+        recherche:'',
+        noms:[]
+      }
+    }, 
+    computed:{
+      firlterNom(){
+         return this.noms.filter((nom)=> nom.includes(this.recherche))
+      }
+      
+    }, 
+    mounted(){
+     return this.noms = ['Lelia', 'Jeremie', 'Gael', 'Boubacar']
     }
-   }, 
-   computed:{
-    reverseMessage(){
-      return this.message.split('').reverse().join('')
-    }
-   }
+
 }
 </script>
-
-
-<style scoped> 
-</style>
